@@ -1,496 +1,1080 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Checkout</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
 
-  <!-- Favicon (ajuste se quiser) -->
-  <link rel="icon" type="image/png" href="219-images-favicon.png" />
+    <link rel="icon" type="image/png" href="219-images-favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- UTMIFY -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-xcod-sck
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
 
-  <!-- UTMify (UTMs) -->
-  <script
-    src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-    data-utmify-prevent-xcod-sck
-    data-utmify-prevent-subids
-    async
-    defer
-  ></script>
+    <!-- META PIXEL -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+      fbq("init", "693515610072834");
+      fbq("track", "PageView");
+    </script>
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=693515610072834&ev=PageView&noscript=1"
+      />
+    </noscript>
+    <!-- FIM META PIXEL -->
 
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '693515610072834');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=693515610072834&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
+    <style>
+      :root {
+        --orange-50: #fff7ed;
+        --orange-100: #ffedd5;
+        --orange-200: #fed7aa;
+        --orange-400: #fb923c;
+        --orange-500: #f97316;
+        --orange-600: #ea580c;
 
-  <style>
-    :root {
-      --orange-50: #fff7ed; --orange-100: #ffedd5; --orange-200: #fed7aa;
-      --orange-400: #fb923c; --orange-500: #f97316; --orange-600: #ea580c; --orange-700: #c2410c;
-      --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db;
-      --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151;
-      --gray-800: #1f2937; --gray-900: #111827;
-      --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
-      --shadow: 0 1px 3px 0 rgba(0,0,0,0.10), 0 1px 2px 0 rgba(0,0,0,0.06);
-      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.10), 0 2px 4px -1px rgba(0,0,0,0.06);
-      --radius: .5rem; --radius-sm: .25rem; --radius-lg: .75rem;
-    }
+        --gray-50: #f9fafb;
+        --gray-100: #f3f4f6;
+        --gray-200: #e5e7eb;
+        --gray-300: #d1d5db;
+        --gray-400: #9ca3af;
+        --gray-500: #6b7280;
+        --gray-600: #4b5563;
+        --gray-700: #374151;
+        --gray-800: #1f2937;
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-    body { background: var(--gray-50); color: var(--gray-800); line-height: 1.5; padding-top: 46px; }
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
-    .promo-banner{
-      background:#ff641c; color:#fff; text-align:center; padding:10px 16px;
-      font-weight:800; text-transform:uppercase; position:fixed; top:0; left:0; width:100%; z-index:9999; font-size:14px;
-    }
+        --radius: 0.5rem;
+        --radius-lg: 0.75rem;
+      }
 
-    .container{ width:100%; max-width:768px; margin:0 auto; padding:0 1rem; }
-    .header{ position:sticky; top:46px; z-index:10; background:#fff; border-bottom:1px solid var(--gray-100); box-shadow:var(--shadow-sm); }
-    .header-container{ display:flex; align-items:center; justify-content:center; height:4rem; }
-    .logo-image{ height:32px; width:auto; }
+      * {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    main{ padding:2rem 1rem; }
+      body {
+        background-color: var(--gray-50);
+        color: var(--gray-800);
+        line-height: 1.5;
+        margin: 0;
+        padding-top: 50px; /* espaço pro banner fixo */
+      }
 
-    .profile-section{ position:relative; margin-bottom:4rem; }
-    .banner{ position:relative; width:100%; height:12rem; border-radius:var(--radius-lg); overflow:hidden; background: var(--gray-200); }
-    .banner-image{ width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
-    .banner-overlay{ position:absolute; inset:0; background: linear-gradient(to bottom, rgba(0,0,0,.1), rgba(0,0,0,.45)); }
-    .banner-content{ position:absolute; top:1.5rem; left:1.5rem; right:1.5rem; }
-    .banner-content h2{ font-size:1.5rem; font-weight:800; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.35); margin-bottom:.5rem; }
-    .banner-stats{ display:flex; gap:1rem; font-size:.875rem; color:#fff; }
-    .stat{ display:flex; align-items:center; gap:.35rem; opacity:.95; }
+      .promo-banner {
+        background-color: #ff641c;
+        color: #ffffff;
+        text-align: center;
+        padding: 10px 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        font-size: 15px;
+      }
 
-    .profile-image-container{
-      position:absolute; bottom:-2.5rem; left:1.5rem; width:5rem; height:5rem;
-      border-radius:50%; overflow:hidden; border:3px solid #fff; box-shadow:var(--shadow); z-index:5; background: var(--gray-200);
-    }
-    .profile-image{ width:100%; height:100%; object-fit:cover; display:block; }
+      .container {
+        width: 100%;
+        max-width: 768px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
 
-    .card{ background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); margin-bottom:1.5rem; overflow:hidden; }
-    .card-header{ padding:1.5rem 1.5rem .5rem; }
-    .card-header h3{ font-size:1.125rem; font-weight:600; }
-    .card-content{ padding:1.5rem; }
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background-color: white;
+        border-bottom: 1px solid var(--gray-100);
+        box-shadow: var(--shadow-sm);
+      }
 
-    .profile-card{ padding-top:.5rem; margin-top:2rem; }
-    .profile-card .name{ display:flex; align-items:center; gap:.5rem; font-size:1.125rem; font-weight:800; color:var(--gray-900); }
-    .username{ font-size:.875rem; color:var(--gray-500); margin:.25rem 0 .75rem; }
-    .bio{ font-size:.875rem; color:var(--gray-700); white-space:pre-wrap; }
+      .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 4rem;
+      }
 
-    .badge{
-      display:inline-block; padding:.125rem .5rem; font-size:.75rem; font-weight:700;
-      border-radius:9999px; background:var(--orange-100); color:var(--orange-700);
-    }
+      .logo-image {
+        height: 32px;
+        width: auto;
+      }
 
-    .subscription-link{ display:block; text-decoration:none; margin-bottom:.75rem; }
-    .subscription-button{
-      display:flex; align-items:center; justify-content:space-between;
-      width:100%; height:3.5rem; padding:0 1.5rem; border-radius:var(--radius);
-      border:none; font-size:1rem; font-weight:700; cursor:pointer; transition:all .2s;
-    }
-    .primary-button{
-      background: linear-gradient(to right, var(--orange-400), var(--orange-500));
-      color:#fff;
-    }
-    .primary-button:hover{ transform: translateY(-2px); box-shadow: var(--shadow-md); }
-    .outline-button{
-      background:#fff; border:1px solid var(--orange-200); color:var(--gray-900); font-weight:700;
-    }
-    .outline-button:hover{ background: var(--orange-50); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-    .price{ font-weight:900; }
-    .highlight{ color: var(--orange-600); }
+      main {
+        padding: 2rem 0;
+      }
 
-    @keyframes pulse {
-      0% { box-shadow:0 0 0 0 rgba(249,115,22,.7); }
-      70% { box-shadow:0 0 0 10px rgba(249,115,22,0); }
-      100% { box-shadow:0 0 0 0 rgba(249,115,22,0); }
-    }
-    .pulse{ animation: pulse 2s infinite; }
+      .profile-section {
+        position: relative;
+        margin-bottom: 3.5rem;
+      }
 
-    .promotions{ margin-top:1.25rem; }
-    .promotions-header{ display:flex; align-items:center; justify-content:space-between; cursor:pointer; }
-    .promotions-header h4{ font-size:.9rem; font-weight:700; }
-    .chevron{ color:var(--gray-400); transition: transform .25s ease; }
+      .banner {
+        position: relative;
+        width: 100%;
+        height: 12rem;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        background: var(--gray-200);
+      }
 
-    .tabs{ display:grid; grid-template-columns:repeat(2,1fr); border-radius:var(--radius); overflow:hidden; margin-bottom:1rem; }
-    .tab{
-      padding:.75rem; border:none; cursor:pointer;
-      background: var(--gray-100); color: var(--gray-600); font-weight:700;
-    }
-    .tab.active{ background: var(--orange-50); color: var(--orange-600); }
-    .tab-content{ display:none; }
-    .tab-content.active{ display:block; }
+      .banner-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
 
-    .post-card{ background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; margin-bottom:12px; }
-    .post-header{ display:flex; align-items:center; justify-content:space-between; padding:10px; border-bottom:1px solid var(--gray-100); }
-    .post-user{ display:flex; align-items:center; gap:.75rem; }
-    .post-avatar{ width:40px; height:40px; border-radius:50%; object-fit:cover; background: var(--gray-200); }
-    .post-user h4{ font-size:.9rem; font-weight:800; }
-    .post-username{ font-size:.75rem; color:var(--gray-500); font-weight:600; }
-    .post-menu{ width:34px; height:34px; border:none; border-radius:50%; background:transparent; cursor:pointer; color:var(--gray-500); }
-    .post-menu:hover{ background: var(--gray-100); }
+      .banner-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.1),
+          rgba(0, 0, 0, 0.45)
+        );
+      }
 
-    .post-content{ position:relative; height:300px; overflow:hidden; background: var(--gray-200); }
-    .post-image{ width:100%; height:100%; object-fit:cover; display:block; }
+      .banner-content {
+        position: absolute;
+        top: 1.25rem;
+        left: 1.25rem;
+        right: 1.25rem;
+      }
 
-    .post-video-container{ position:relative; width:100%; height:100%; overflow:hidden; }
-    .post-video{ width:100%; height:100%; object-fit:cover; display:block; }
+      .banner-content h2 {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: white;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+        margin-bottom: 0.5rem;
+      }
 
-    .video-overlay{
-      position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
-      background: rgba(0,0,0,.25);
-    }
-    .lock-icon{
-      color: var(--gray-200);
-      background: rgba(255,255,255,.25);
-      width:64px; height:64px; border-radius:50%;
-      display:flex; align-items:center; justify-content:center; margin-bottom:10px;
-      backdrop-filter: blur(2px);
-    }
-    .post-stats{
-      display:flex; gap:14px; padding:10px 14px;
-      font-size:.8rem; font-weight:800; color:#fff;
-      background: rgba(0,0,0,.25); border-radius: 999px;
-      backdrop-filter: blur(2px);
-    }
+      .banner-stats {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.875rem;
+        color: white;
+        opacity: 0.95;
+      }
 
-    .post-actions{ display:flex; align-items:center; padding:10px; gap:8px; }
-    .action-button{ border:none; background:transparent; cursor:pointer; color:var(--gray-600); padding:8px; border-radius:10px; }
-    .action-button:hover{ background: var(--gray-100); }
-    .action-button.bookmark{ margin-left:auto; }
+      .stat {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
 
-    .media-subtabs{ display:flex; gap:.5rem; overflow-x:auto; padding-bottom:.5rem; margin-bottom:1rem; }
-    .subtab{
-      padding:.5rem 1rem; font-size:.75rem; font-weight:800;
-      background: var(--gray-100); border:none; border-radius: var(--radius-sm);
-      cursor:pointer; color: var(--gray-600); white-space:nowrap;
-    }
-    .subtab.active{ background: var(--orange-100); color: var(--orange-700); }
-    .media-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:.5rem; }
-    .media-item{
-      position:relative; aspect-ratio: 1/1; border-radius: var(--radius-sm);
-      overflow:hidden; background: var(--orange-50);
-      display:flex; align-items:center; justify-content:center;
-    }
-    .logo-background{ position:absolute; width:70%; opacity:.08; }
+      .profile-image-container {
+        position: absolute;
+        bottom: -2.75rem;
+        left: 1.25rem;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid white;
+        box-shadow: var(--shadow);
+        background: var(--gray-200);
+      }
 
-    .cta-bottom{ margin-top: 16px; }
+      .profile-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
 
-    @media (min-width:768px){
-      .profile-image-container{ width:6rem; height:6rem; }
-    }
-    @media (max-width:480px){
-      .banner-stats{ font-size:.75rem; }
-      .profile-image-container{ width:4.5rem; height:4.5rem; bottom:-2.25rem; }
-    }
-  </style>
-</head>
+      .card {
+        background-color: white;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+      }
 
-<body>
-  <div class="promo-banner" id="promoBanner">ESSA PROMOÇÃO É VÁLIDA ATÉ --/--/----</div>
+      .card-header {
+        padding: 1.25rem 1.5rem 0.5rem;
+      }
 
-  <header class="header">
-    <div class="container header-container">
-      <!-- Coloque um logo seu: ex: images-logo.webp -->
-      <img src="images-logo.webp" alt="Logo" class="logo-image" onerror="this.style.display='none'">
-    </div>
-  </header>
+      .card-header h3 {
+        font-size: 1.125rem;
+        font-weight: 600;
+      }
 
-  <main class="container">
-    <div class="profile-section" style="margin-bottom: 50px;">
-      <div class="banner">
-        <!-- Troque pelos seus arquivos (ex.: bannermelmaia3.jpg), mas use conteúdo que você tem direito de usar -->
-        <img src="banner.jpg" alt="Capa" class="banner-image" onerror="this.style.display='none'">
-        <div class="banner-overlay"></div>
-        <div class="banner-content">
-          <h2>Criador(a) 💋</h2>
-          <div class="banner-stats">
-            <div class="stat"><span>🖼️</span><span>401</span></div>
-            <div class="stat"><span>🎬</span><span>438</span></div>
-            <div class="stat"><span>❤️</span><span>229K</span></div>
+      .card-content {
+        padding: 1.25rem 1.5rem;
+      }
+
+      .profile-card {
+        margin-top: 0.25rem;
+      }
+
+      .profile-title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 700;
+        font-size: 1.125rem;
+      }
+
+      .username {
+        font-size: 0.9rem;
+        color: var(--gray-500);
+        margin-top: 0.25rem;
+      }
+
+      .bio {
+        font-size: 0.95rem;
+        color: var(--gray-700);
+        margin-top: 0.75rem;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 0.125rem 0.6rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        border-radius: 9999px;
+        background-color: var(--orange-100);
+        color: #9a3412;
+      }
+
+      .subscription-link {
+        display: block;
+        text-decoration: none;
+        margin-bottom: 0.75rem;
+      }
+
+      .subscription-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 3.5rem;
+        padding: 0 1.25rem;
+        border-radius: var(--radius);
+        border: none;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .primary-button {
+        background: linear-gradient(to right, var(--orange-400), var(--orange-500));
+        color: white;
+      }
+
+      .primary-button:hover {
+        background: linear-gradient(to right, var(--orange-500), var(--orange-600));
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .outline-button {
+        background-color: white;
+        border: 1px solid var(--orange-200);
+        color: var(--gray-800);
+      }
+
+      .outline-button:hover {
+        background-color: var(--orange-50);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .price {
+        font-weight: 900;
+      }
+
+      .highlight {
+        color: var(--orange-600);
+      }
+
+      .promotions {
+        margin-top: 1rem;
+      }
+
+      .promotions-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        padding: 0.25rem 0;
+        user-select: none;
+      }
+
+      .promotions-header h4 {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--gray-700);
+      }
+
+      .chevron {
+        color: var(--gray-400);
+        transition: transform 0.2s ease;
+      }
+
+      /* Tabs */
+      .tabs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border-radius: var(--radius);
+        overflow: hidden;
+        margin-bottom: 1rem;
+      }
+
+      .tab {
+        padding: 0.75rem;
+        text-align: center;
+        font-size: 0.9rem;
+        background-color: var(--gray-100);
+        border: none;
+        cursor: pointer;
+        color: var(--gray-600);
+        font-weight: 700;
+      }
+
+      .tab.active {
+        background-color: var(--orange-50);
+        color: var(--orange-600);
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      /* Posts grid */
+      .posts-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .post-card {
+        background: white;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .post-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid var(--gray-100);
+      }
+
+      .post-user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .post-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 9999px;
+        object-fit: cover;
+      }
+
+      .post-user h4 {
+        font-size: 0.9rem;
+        margin: 0;
+        font-weight: 800;
+        line-height: 1.1;
+      }
+
+      .post-username {
+        font-size: 0.8rem;
+        color: var(--gray-500);
+        margin: 2px 0 0;
+        font-weight: 600;
+      }
+
+      .post-content {
+        position: relative;
+        height: 280px;
+        background: var(--gray-200);
+        overflow: hidden;
+      }
+
+      .post-media {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .video-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.25);
+      }
+
+      .lock-icon {
+        width: 62px;
+        height: 62px;
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        background: rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(2px);
+      }
+
+      /* Media tab grid */
+      .media-subtabs {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+      }
+
+      .subtab {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        background-color: var(--gray-100);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        color: var(--gray-600);
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .subtab.active {
+        background-color: var(--orange-100);
+        color: var(--orange-600);
+      }
+
+      .media-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+      }
+
+      .media-item {
+        position: relative;
+        aspect-ratio: 1 / 1;
+        background-color: var(--orange-50);
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .logo-background {
+        position: absolute;
+        width: 75%;
+        max-width: 200px;
+        height: auto;
+        opacity: 0.1;
+      }
+
+      /* Bottom CTA */
+      .bottom-cta {
+        margin-top: 1rem;
+      }
+
+      @media (max-width: 520px) {
+        .posts-grid {
+          grid-template-columns: 1fr;
+        }
+        .profile-image-container {
+          width: 100px;
+          height: 100px;
+          bottom: -2.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="promo-banner" id="promoBanner">ESSA PROMOÇÃO É VÁLIDA ATÉ --/--/----</div>
+
+    <header class="header">
+      <div class="container header-container">
+        <img src="images-logo.webp" alt="Logo" class="logo-image" />
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Perfil -->
+      <div class="profile-section">
+        <div class="banner">
+          <img
+            src="bannermelmaia3.jpg"
+            alt="Capa"
+            class="banner-image"
+            style="object-position: 20% 60%; transform: scale(1.2)"
+          />
+          <div class="banner-overlay"></div>
+
+          <div class="banner-content">
+            <h2>Criador(a) 💋</h2>
+            <div class="banner-stats">
+              <div class="stat">
+                <span>🖼️</span>
+                <span>401</span>
+              </div>
+              <div class="stat">
+                <span>🎥</span>
+                <span>438</span>
+              </div>
+              <div class="stat">
+                <span>❤️</span>
+                <span>229K</span>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div class="profile-image-container">
+          <img
+            src="fotoperfilmelmaia1.jpg"
+            alt="Foto de perfil"
+            class="profile-image"
+            style="object-position: top; transform: scale(1.1)"
+          />
         </div>
       </div>
 
-      <div class="profile-image-container" style="width:120px; height:120px;">
-        <img src="perfil.jpg" alt="Perfil" class="profile-image" onerror="this.style.display='none'">
-      </div>
-    </div>
-
-    <div class="card profile-card" style="margin-top:0;">
-      <div class="card-content" style="padding-top:14px;">
-        <div class="name">usuario_verificado <span class="badge">Verificado</span></div>
-        <p class="username">@usuario</p>
-        <p class="bio">Descrição do perfil aqui (sem meter pessoa real, por favor).</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header"><h3>Assinaturas</h3></div>
-      <div class="card-content">
-        <p class="badge" style="display:block; width:fit-content;">MAIS POPULAR 🔥🔥</p>
-
-        <a class="subscription-link" data-apex>
-          <button class="subscription-button primary-button pulse">
-            <b>30 DIAS</b>
-            <span class="price">R$ 9,90</span>
-          </button>
-        </a>
-
-        <p class="badge" style="margin-top:-16px; display:block; width:fit-content; font-weight:900;">
-          + BÔNUS HOJE!
-        </p>
-
-        <div class="promotions">
-          <div class="promotions-header">
-            <h4>Promoções</h4>
-            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M19 9l-7 7-7-7"></path>
-            </svg>
+      <div class="card profile-card">
+        <div class="card-content">
+          <div class="profile-title">
+            <span>usuario_verificado</span>
+            <span class="badge">Verificado</span>
           </div>
+          <p class="username">@usuario</p>
 
-          <a class="subscription-link" data-apex>
-            <button class="subscription-button outline-button">
-              <div style="display:flex; align-items:center; gap:.5rem;">
-                <span>3 Meses</span>
-                <span class="badge">Economia</span>
-              </div>
-              <span class="price highlight">R$ 19,90</span>
+          <p class="bio">
+            Descrição do perfil aqui. (Coloca o texto que você quiser.)
+          </p>
+        </div>
+      </div>
+
+      <!-- Assinaturas -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Assinaturas</h3>
+        </div>
+        <div class="card-content">
+          <p class="badge" style="display: block; width: fit-content; margin-bottom: 10px">
+            MAIS POPULAR 🔥🔥
+          </p>
+
+          <!-- Link principal (Apex) -->
+          <a
+            id="cta30dias"
+            href="https://apextry.com/go/cont_vip?apx=9ckcw75q"
+            class="subscription-link"
+          >
+            <button class="subscription-button primary-button">
+              <b>30 DIAS</b>
+              <span class="price">R$ 9,90</span>
             </button>
           </a>
 
-          <a class="subscription-link" data-apex>
-            <button class="subscription-button outline-button">
-              <div style="display:flex; align-items:center; gap:.5rem;">
-                <span>1 ANO</span>
-                <span class="badge">Melhor oferta</span>
-              </div>
-              <span class="price highlight">R$ 69,90</span>
-            </button>
-          </a>
-        </div>
-      </div>
-    </div>
+          <p
+            class="badge"
+            style="margin-top: -8px; display: block; width: fit-content; font-weight: 800"
+          >
+            + BÔNUS HOJE!
+          </p>
 
-    <div class="content-tabs">
-      <div class="tabs">
-        <button class="tab active" data-tab="posts">93 postagens</button>
-        <button class="tab" data-tab="media">412 mídias</button>
-      </div>
-
-      <div class="tab-content active" id="posts-content">
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-          <div class="post-card">
-            <div class="post-header">
-              <div class="post-user">
-                <img src="perfil.jpg" class="post-avatar" alt="" onerror="this.style.display='none'">
-                <div>
-                  <h4>usuario_verificado</h4>
-                  <p class="post-username">@usuario</p>
-                </div>
-              </div>
-              <button class="post-menu" aria-label="Menu">⋯</button>
-            </div>
-
-            <div class="post-content">
-              <div class="post-video-container">
-                <img src="foto1.jpg" class="post-image" alt="" onerror="this.style.display='none'">
-                <div class="video-overlay">
-                  <div class="lock-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <rect x="3" y="11" width="18" height="11" rx="2"></rect>
-                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                    </svg>
-                  </div>
-                  <div class="post-stats">
-                    <span>❤️ 248</span>
-                    <span>💬 126</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="post-actions">
-              <button class="action-button" aria-label="Curtir">❤️</button>
-              <button class="action-button" aria-label="Comentar">💬</button>
-              <button class="action-button bookmark" aria-label="Salvar">🔖</button>
-            </div>
-          </div>
-
-          <div class="post-card">
-            <div class="post-header">
-              <div class="post-user">
-                <img src="perfil.jpg" class="post-avatar" alt="" onerror="this.style.display='none'">
-                <div>
-                  <h4>usuario_verificado</h4>
-                  <p class="post-username">@usuario</p>
-                </div>
-              </div>
-              <button class="post-menu" aria-label="Menu">⋯</button>
-            </div>
-
-            <div class="post-content">
-              <div class="post-video-container">
-                <video class="post-video" src="video1.mp4" autoplay muted loop playsinline preload="auto"></video>
-                <div class="video-overlay">
-                  <div class="lock-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <rect x="3" y="11" width="18" height="11" rx="2"></rect>
-                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                    </svg>
-                  </div>
-                  <div class="post-stats">
-                    <span>❤️ 549</span>
-                    <span>💬 362</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="post-actions">
-              <button class="action-button" aria-label="Curtir">❤️</button>
-              <button class="action-button" aria-label="Comentar">💬</button>
-              <button class="action-button bookmark" aria-label="Salvar">🔖</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-content" id="media-content">
-        <div class="media-subtabs">
-          <button class="subtab active" data-subtab="all">412 todos</button>
-          <button class="subtab" data-subtab="photos">258 fotos</button>
-          <button class="subtab" data-subtab="videos">154 vídeos</button>
-        </div>
-
-        <div class="media-grid">
-          <div class="media-item">
-            <img src="images-logo.webp" alt="" class="logo-background" onerror="this.style.display='none'">
-            <div class="lock-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="11" width="18" height="11" rx="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          <div class="promotions">
+            <div class="promotions-header" id="promotionsHeader">
+              <h4>Promoções</h4>
+              <svg
+                class="chevron"
+                id="chevron"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M19 9l-7 7-7-7"></path>
               </svg>
             </div>
+
+            <div id="promotionsList">
+              <a
+                href="https://apextry.com/go/cont_vip?apx=9ckcw75q"
+                class="subscription-link"
+              >
+                <button class="subscription-button outline-button">
+                  <div style="display: flex; align-items: center; gap: 8px">
+                    <span>3 Meses</span>
+                    <span class="badge">Economia</span>
+                  </div>
+                  <span class="price highlight">R$ 19,90</span>
+                </button>
+              </a>
+
+              <a
+                href="https://apextry.com/go/cont_vip?apx=9ckcw75q"
+                class="subscription-link"
+              >
+                <button class="subscription-button outline-button">
+                  <div style="display: flex; align-items: center; gap: 8px">
+                    <span>1 ANO</span>
+                    <span class="badge">Melhor oferta</span>
+                  </div>
+                  <span class="price highlight">R$ 69,90</span>
+                </button>
+              </a>
+            </div>
           </div>
-          <div class="media-item"><img src="images-logo.webp" alt="" class="logo-background" onerror="this.style.display='none'"><div class="lock-icon">🔒</div></div>
-          <div class="media-item"><img src="images-logo.webp" alt="" class="logo-background" onerror="this.style.display='none'"><div class="lock-icon">🔒</div></div>
-          <div class="media-item"><img src="images-logo.webp" alt="" class="logo-background" onerror="this.style.display='none'"><div class="lock-icon">🔒</div></div>
-          <div class="media-item"><img src="images-logo.webp" alt="" class="logo-background" onerror="this.style.display='none'"><div class="lock-icon">🔒</div></div>
-          <div class="media-item"><img src="images-logo.webp" alt="" class="logo-background" onerror="this.style.display='none'"><div class="lock-icon">🔒</div></div>
         </div>
       </div>
-    </div>
 
-    <div class="cta-bottom">
-      <a class="subscription-link" data-apex>
-        <button class="subscription-button primary-button">
-          <b>VEJA TUDO AGORA</b>
-          <span class="price">IR</span>
-        </button>
-      </a>
-    </div>
-  </main>
+      <!-- Abas -->
+      <div class="content-tabs">
+        <div class="tabs">
+          <button class="tab active" data-tab="posts">93 postagens</button>
+          <button class="tab" data-tab="media">412 mídias</button>
+        </div>
 
-  <script>
-    // ======= CONFIG =======
-    const APEX_LINK = 'https://apextry.com/go/cont_vip?apx=9ckcw75q';
+        <!-- POSTS -->
+        <div class="tab-content active" id="posts-content">
+          <div class="posts-grid">
+            <!-- Post 1 (imagem) -->
+            <div class="post-card">
+              <div class="post-header">
+                <div class="post-user">
+                  <img src="fotoperfilmelmaia1.jpg" class="post-avatar" alt="avatar" />
+                  <div>
+                    <h4>usuario_verificado</h4>
+                    <p class="post-username">@usuario</p>
+                  </div>
+                </div>
+                <div style="color: var(--gray-400); font-weight: 900">•••</div>
+              </div>
 
-    // Banner data (hoje)
-    (function(){
+              <div class="post-content">
+                <img src="fotomelmaia1.jpg" class="post-media" alt="post" />
+                <div class="video-overlay">
+                  <div class="lock-icon" title="Conteúdo bloqueado">
+                    <svg
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Post 2 (imagem) -->
+            <div class="post-card">
+              <div class="post-header">
+                <div class="post-user">
+                  <img src="fotoperfilmelmaia1.jpg" class="post-avatar" alt="avatar" />
+                  <div>
+                    <h4>usuario_verificado</h4>
+                    <p class="post-username">@usuario</p>
+                  </div>
+                </div>
+                <div style="color: var(--gray-400); font-weight: 900">•••</div>
+              </div>
+
+              <div class="post-content">
+                <img src="fotomelmaia3.jpg" class="post-media" alt="post" />
+                <div class="video-overlay">
+                  <div class="lock-icon" title="Conteúdo bloqueado">
+                    <svg
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Post 3 (vídeo) -->
+            <div class="post-card">
+              <div class="post-header">
+                <div class="post-user">
+                  <img src="fotoperfilmelmaia1.jpg" class="post-avatar" alt="avatar" />
+                  <div>
+                    <h4>usuario_verificado</h4>
+                    <p class="post-username">@usuario</p>
+                  </div>
+                </div>
+                <div style="color: var(--gray-400); font-weight: 900">•••</div>
+              </div>
+
+              <div class="post-content">
+                <video
+                  class="post-media"
+                  src="videomelmaia02.mp4"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="auto"
+                ></video>
+                <div class="video-overlay">
+                  <div class="lock-icon" title="Conteúdo bloqueado">
+                    <svg
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Post 4 (vídeo) -->
+            <div class="post-card">
+              <div class="post-header">
+                <div class="post-user">
+                  <img src="fotoperfilmelmaia1.jpg" class="post-avatar" alt="avatar" />
+                  <div>
+                    <h4>usuario_verificado</h4>
+                    <p class="post-username">@usuario</p>
+                  </div>
+                </div>
+                <div style="color: var(--gray-400); font-weight: 900">•••</div>
+              </div>
+
+              <div class="post-content">
+                <video
+                  class="post-media"
+                  src="videomelmaia03.mp4"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="auto"
+                ></video>
+                <div class="video-overlay">
+                  <div class="lock-icon" title="Conteúdo bloqueado">
+                    <svg
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MÍDIAS -->
+        <div class="tab-content" id="media-content">
+          <div class="media-subtabs">
+            <button class="subtab active" data-subtab="all">412 todos</button>
+            <button class="subtab" data-subtab="photos">258 fotos</button>
+            <button class="subtab" data-subtab="videos">154 vídeos</button>
+          </div>
+
+          <div class="media-grid">
+            <div class="media-item">
+              <img src="images-logo.webp" alt="Logo" class="logo-background" />
+              <div class="lock-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="media-item">
+              <img src="images-logo.webp" alt="Logo" class="logo-background" />
+              <div class="lock-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="media-item">
+              <img src="images-logo.webp" alt="Logo" class="logo-background" />
+              <div class="lock-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="media-item">
+              <img src="images-logo.webp" alt="Logo" class="logo-background" />
+              <div class="lock-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="media-item">
+              <img src="images-logo.webp" alt="Logo" class="logo-background" />
+              <div class="lock-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="media-item">
+              <img src="images-logo.webp" alt="Logo" class="logo-background" />
+              <div class="lock-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Final -->
+      <div class="bottom-cta">
+        <a
+          id="ctaBottom"
+          href="https://apextry.com/go/cont_vip?apx=9ckcw75q"
+          class="subscription-link"
+        >
+          <button class="subscription-button primary-button">
+            <b>VER TUDO AGORA</b>
+            <span style="display:flex;align-items:center;gap:8px">
+              <span class="price">R$ 9,90</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path d="M8 5L15.57 11.6237C15.7976 11.8229 15.7976 12.1771 15.57 12.3763L8 19" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </span>
+          </button>
+        </a>
+      </div>
+    </main>
+
+    <script>
+      // ===== Promo date =====
       function getFormattedDate(daysAhead = 0) {
-        const today = new Date();
-        today.setDate(today.getDate() + daysAhead);
-        const dd = String(today.getDate()).padStart(2, '0');
-        const mm = String(today.getMonth() + 1).padStart(2, '0');
-        const yyyy = today.getFullYear();
+        const d = new Date();
+        d.setDate(d.getDate() + daysAhead);
+        const dd = String(d.getDate()).padStart(2, "0");
+        const mm = String(d.getMonth() + 1).padStart(2, "0");
+        const yyyy = d.getFullYear();
         return `${dd}/${mm}/${yyyy}`;
       }
-      const banner = document.getElementById("promoBanner");
-      if (banner) banner.textContent = `ESSA PROMOÇÃO É VÁLIDA ATÉ ${getFormattedDate(0)}`;
-    })();
-
-    // UTM passthrough (apenda querystring atual no link da Apex)
-    function buildUrlWithCurrentQuery(baseUrl) {
-      const q = (location.search || '').replace('?', '').trim();
-      if (!q) return baseUrl;
-      return baseUrl + (baseUrl.indexOf('?') > -1 ? '&' : '?') + q;
-    }
-
-    // Aplica Apex link em todos <a data-apex>
-    (function(){
-      const finalUrl = buildUrlWithCurrentQuery(APEX_LINK);
-      document.querySelectorAll('a[data-apex]').forEach(a => {
-        a.setAttribute('href', finalUrl);
-      });
-    })();
-
-    // ======= BACK REDIRECT (quando tentar sair/voltar) =======
-    (function setBackRedirect(url) {
-      const urlBackRedirect = buildUrlWithCurrentQuery(url);
-
-      history.pushState({}, '', location.href);
-      history.pushState({}, '', location.href);
-      history.pushState({}, '', location.href);
-
-      window.addEventListener('popstate', () => {
-        setTimeout(() => { location.href = urlBackRedirect; }, 1);
-      });
-    })(APEX_LINK);
-
-    // Tabs (corrigido: era addEventListener("") no teu código antigo)
-    document.addEventListener("DOMContentLoaded", () => {
-      const tabs = document.querySelectorAll(".tab");
-      const tabContents = document.querySelectorAll(".tab-content");
-
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          tabs.forEach((t) => t.classList.remove("active"));
-          tabContents.forEach((c) => c.classList.remove("active"));
-          tab.classList.add("active");
-          const tabId = tab.getAttribute("data-tab");
-          const el = document.getElementById(`${tabId}-content`);
-          if (el) el.classList.add("active");
-        });
+      document.addEventListener("DOMContentLoaded", () => {
+        const banner = document.getElementById("promoBanner");
+        banner.textContent = `ESSA PROMOÇÃO É VÁLIDA ATÉ ${getFormattedDate(0)}`;
       });
 
-      const promotionsHeader = document.querySelector(".promotions-header");
-      const promotionsButtons = document.querySelectorAll(".promotions .subscription-link");
-      const chevron = document.querySelector(".chevron");
-      let open = true;
+      // ===== Tabs (corrigido: era addEventListener("") kkkkk) =====
+      document.addEventListener("DOMContentLoaded", () => {
+        const tabs = document.querySelectorAll(".tab");
+        const tabContents = document.querySelectorAll(".tab-content");
 
-      if (promotionsHeader) {
-        promotionsHeader.addEventListener("click", () => {
-          open = !open;
-          promotionsButtons.forEach((btn, idx) => {
-            // Mantém o primeiro (30 dias) fora do dropdown, só mexe nos do dropdown
-            if (idx >= 0) btn.style.display = open ? "block" : "none";
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            tabs.forEach((t) => t.classList.remove("active"));
+            tabContents.forEach((c) => c.classList.remove("active"));
+
+            tab.classList.add("active");
+            const tabId = tab.getAttribute("data-tab");
+            const el = document.getElementById(`${tabId}-content`);
+            if (el) el.classList.add("active");
           });
-          if (chevron) chevron.style.transform = open ? "rotate(0deg)" : "rotate(-90deg)";
         });
-      }
 
-      const subtabs = document.querySelectorAll(".subtab");
-      subtabs.forEach((subtab) => {
-        subtab.addEventListener("click", () => {
-          subtabs.forEach((s) => s.classList.remove("active"));
-          subtab.classList.add("active");
+        const subtabs = document.querySelectorAll(".subtab");
+        subtabs.forEach((subtab) => {
+          subtab.addEventListener("click", () => {
+            subtabs.forEach((s) => s.classList.remove("active"));
+            subtab.classList.add("active");
+          });
         });
+
+        // ===== Promotions dropdown =====
+        const promotionsHeader = document.getElementById("promotionsHeader");
+        const promotionsList = document.getElementById("promotionsList");
+        const chevron = document.getElementById("chevron");
+        let open = true;
+
+        if (promotionsHeader && promotionsList && chevron) {
+          promotionsHeader.addEventListener("click", () => {
+            open = !open;
+            promotionsList.style.display = open ? "block" : "none";
+            chevron.style.transform = open ? "rotate(0deg)" : "rotate(-90deg)";
+          });
+        }
       });
-    });
-  </script>
-</body>
+
+      // ===== BACK REDIRECT (voltar = joga pro Apex com query) =====
+      (function () {
+        const APEX_LINK = "https://apextry.com/go/cont_vip?apx=9ckcw75q";
+
+        function buildUrlWithQuery(baseUrl) {
+          const qs = window.location.search.replace("?", "").trim();
+          if (!qs) return baseUrl;
+
+          return baseUrl + (baseUrl.indexOf("?") > -1 ? "&" : "?") + qs;
+        }
+
+        const redirectUrl = buildUrlWithQuery(APEX_LINK);
+
+        // empilha histórico pra capturar "voltar"
+        history.pushState({}, "", location.href);
+        history.pushState({}, "", location.href);
+
+        window.addEventListener("popstate", () => {
+          setTimeout(() => {
+            location.href = redirectUrl;
+          }, 1);
+        });
+      })();
+    </script>
+  </body>
 </html>
