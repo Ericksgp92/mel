@@ -81,7 +81,7 @@
 
 <body>
 
-  <div class="promo-banner">
+  <div class="promo-banner" id="promoBanner">
     ESSA PROMOÇÃO É VÁLIDA ATÉ <span id="promoDate"></span>
   </div>
 
@@ -98,7 +98,7 @@
     </div>
 
     <div class="card">
-      <a href="https://apextry.com/go/cont_vip?apx=9ckcw75q" target="_blank">
+      <a href="">
         <button class="btn">
           VER TUDO POR APENAS R$ 24,90
         </button>
@@ -108,12 +108,17 @@
   </main>
 
   <script>
-    function formatDate() {
+    function formatDate(days = 0) {
       const d = new Date();
+      d.setDate(d.getDate() + days);
       return d.toLocaleDateString("pt-BR");
     }
-    document.getElementById("promoDate").innerText = formatDate();
+    document.getElementById("promoDate").innerText = formatDate(0);
   </script>
 
 </body>
 </html>
+
+
+
+ali no link do checkout, coloca o link do bot?
