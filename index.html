@@ -8,6 +8,16 @@
   <link rel="icon" href="219-images-favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- UTMIFY -->
+  <script
+    src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+    data-utmify-prevent-xcod-sck
+    data-utmify-prevent-subids
+    async
+    defer
+  ></script>
+  <!-- FIM UTMIFY -->
+
   <!-- META PIXEL -->
   <script>
     !function(f,b,e,v,n,t,s){
@@ -54,24 +64,34 @@
     .container {
       max-width: 768px;
       margin: 0 auto;
-      padding: 70px 16px 16px;
+      padding: 80px 16px 16px;
     }
 
     .card {
       background: #fff;
-      border-radius: 10px;
-      padding: 16px;
+      border-radius: 12px;
+      padding: 20px;
       margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    }
+
+    h2 {
+      margin: 0 0 6px;
+    }
+
+    .username {
+      color: #6b7280;
+      font-size: 14px;
+      margin-bottom: 12px;
     }
 
     .btn {
       width: 100%;
-      padding: 16px;
+      padding: 18px;
       background: linear-gradient(90deg,#fb923c,#f97316);
       color: #fff;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
@@ -81,7 +101,7 @@
 
 <body>
 
-  <div class="promo-banner" id="promoBanner">
+  <div class="promo-banner">
     ESSA PROMOÇÃO É VÁLIDA ATÉ <span id="promoDate"></span>
   </div>
 
@@ -89,7 +109,7 @@
 
     <div class="card">
       <h2>Mel Maia 💋</h2>
-      <p>@melmaia</p>
+      <div class="username">@melmaia</div>
       <p>
         Meu amor… não adianta resistir.  
         Aqui é acesso total, sem censura, sem frescura.  
@@ -98,7 +118,7 @@
     </div>
 
     <div class="card">
-      <a href="">
+      <a href="https://apextry.com/go/cont_vip?apx=9ckcw75q">
         <button class="btn">
           VER TUDO POR APENAS R$ 24,90
         </button>
@@ -107,18 +127,37 @@
 
   </main>
 
+  <!-- DATA PROMO -->
   <script>
-    function formatDate(days = 0) {
-      const d = new Date();
-      d.setDate(d.getDate() + days);
-      return d.toLocaleDateString("pt-BR");
-    }
-    document.getElementById("promoDate").innerText = formatDate(0);
+    document.getElementById("promoDate").innerText =
+      new Date().toLocaleDateString("pt-BR");
+  </script>
+
+  <!-- BACK REDIRECT -->
+  <script>
+    (function () {
+      const link = 'https://apextry.com/go/cont_vip?apx=9ckcw75q';
+
+      function setBackRedirect(url) {
+        let finalUrl =
+          url +
+          (url.indexOf('?') > -1 ? '&' : '?') +
+          window.location.search.replace('?', '');
+
+        history.pushState({}, '', location.href);
+        history.pushState({}, '', location.href);
+        history.pushState({}, '', location.href);
+
+        window.addEventListener('popstate', function () {
+          setTimeout(function () {
+            window.location.href = finalUrl;
+          }, 1);
+        });
+      }
+
+      setBackRedirect(link);
+    })();
   </script>
 
 </body>
 </html>
-
-
-
-ali no link do checkout, coloca o link do bot?
