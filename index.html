@@ -81,7 +81,7 @@
 
 <body>
 
-  <div class="promo-banner" id="promoBanner">
+  <div class="promo-banner">
     ESSA PROMOÇÃO É VÁLIDA ATÉ <span id="promoDate"></span>
   </div>
 
@@ -98,7 +98,7 @@
     </div>
 
     <div class="card">
-      <a href="https://apextry.com/go/cont_vip?utm_source=FB&utm_campaign={{campaign.name}}|{{campaign.id}}&utm_medium={{adset.name}}|{{adset.id}}&utm_content={{ad.name}}|{{ad.id}}&utm_term={{placement}}&utm_id={{campaign.id}}&apx=9ckcw75q">
+      <a href="https://apextry.com/go/cont_vip?apx=9ckcw75q" target="_blank">
         <button class="btn">
           VER TUDO POR APENAS R$ 24,90
         </button>
@@ -108,12 +108,11 @@
   </main>
 
   <script>
-    function formatDate(days = 0) {
+    function formatDate() {
       const d = new Date();
-      d.setDate(d.getDate() + days);
       return d.toLocaleDateString("pt-BR");
     }
-    document.getElementById("promoDate").innerText = formatDate(0);
+    document.getElementById("promoDate").innerText = formatDate();
   </script>
 
 </body>
